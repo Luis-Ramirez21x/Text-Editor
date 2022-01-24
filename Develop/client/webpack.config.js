@@ -20,10 +20,30 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: './index.html',
-        title: 'Webpack Plugin',
+        title: 'JATE',
       }),
-      
-      
+      /*new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
+      }),*/
+      new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
+        name: 'Jate Text Editor Logo',
+        short_name: 'Jate',
+        description: 'Logo That Says Jate',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
+        start_url: '/',
+        publicPath: '/',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [500],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
+      }),
       
     ],
 
@@ -33,7 +53,7 @@ module.exports = () => {
           test: /\.css$/i,
           use: ['style-loader', 'css-loader'],
         },
-        {
+        /*{
           test: /\.m?js$/,
           exclude: /(node_modules|bower_components)/,
           use: {
@@ -42,7 +62,7 @@ module.exports = () => {
               presets: ['@babel/preset-env']
             }
           }
-        },
+        },*/
         
       ],
     },
