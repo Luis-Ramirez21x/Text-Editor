@@ -9,6 +9,7 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 module.exports = () => {
   return {
     mode: 'development',
+    devtool: "source-map",
     entry: {
       main: './src/js/index.js',
       install: './src/js/install.js'
@@ -22,10 +23,10 @@ module.exports = () => {
         template: './index.html',
         title: 'JATE',
       }),
-      /*new InjectManifest({
+      new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js',
-      }),*/
+      }),
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
@@ -39,7 +40,7 @@ module.exports = () => {
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
-            sizes: [500],
+            sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('assets', 'icons'),
           },
         ],
