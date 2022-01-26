@@ -23,10 +23,10 @@ module.exports = () => {
         template: './index.html',
         title: 'JATE',
       }),
-      /*new InjectManifest({
+      new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js',
-      }),*/
+      }),
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
@@ -54,16 +54,17 @@ module.exports = () => {
           test: /\.css$/i,
           use: ['style-loader', 'css-loader'],
         },
-        /*{
+        {
           test: /\.m?js$/,
           exclude: /(node_modules|bower_components)/,
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
             }
           }
-        },*/
+        },
         
       ],
     },
